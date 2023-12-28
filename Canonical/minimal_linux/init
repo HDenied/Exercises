@@ -12,7 +12,7 @@ mknod -m 444 /dev/random c 1 8
 mknod -m 444 /dev/urandom c 1 9
 
 
-echo -e "\n-----Hello world!-----\nType poweroff -f to poweroff"
+echo -e "\n-----Hello world!-----\nType \"poweroff -f\" for a clean system shutdown"
 
 setsid  cttyhack sh
 exec /bin/sh
