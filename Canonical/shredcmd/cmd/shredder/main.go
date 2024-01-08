@@ -8,7 +8,7 @@ import (
 
 func main() {
 	filePath := flag.String("f", "", "The file path of the file to process")
-	blockSize := flag.Int("b", 4096, "The block size to perform the overwriting (default: 4096 as default page cache size)")
+	blockSize := flag.Int("b", shred.DEF_BUFF, "The block size in bytes to perform the overwriting")
 
 	flag.Parse()
 

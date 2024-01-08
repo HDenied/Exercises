@@ -7,7 +7,8 @@ import (
 	"strconv"
 )
 
-const MAX_BUFF = 4096
+const DEF_BUFF = 1 << 12
+const MAX_BUFF = 1 << 20
 const N_WR = 3
 
 type ShredDirError struct {
@@ -47,7 +48,6 @@ func Shred(path string, buffSize int) (ShredRes, error) {
 
 	var res ShredRes = ShredRes{}
 
-	// Validate path input and ensure it's a file
 	if fi, err := os.Stat(path); err != nil {
 		return res, err
 	} else if fi.IsDir() {
@@ -88,7 +88,7 @@ func Shred(path string, buffSize int) (ShredRes, error) {
 			return res, err
 		}
 
-		// Efficiently overwrite blocks of data with random bytes
+		// Overwrite blocks of data with random bytes
 		bytesWritten = 0
 		for bytesWritten < fileSize {
 			// Fill buffer with random data
